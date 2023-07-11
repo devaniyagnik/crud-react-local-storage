@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = ({ localdata, submitdata }) => {
+const Signup = ({ localdata, submitdata,isLoggedIn }) => {
   const navigate = useNavigate();
   const [currentUserInput, setCurrentUserInput] = useState({
     name: "",
@@ -64,7 +64,8 @@ const Signup = ({ localdata, submitdata }) => {
         cpassword: "",
         file: "",
       });
-      navigate("/login");
+      {isLoggedIn ? navigate("/dashboard"):navigate("/login")}
+      ;
     }
   };
   return (
@@ -78,7 +79,7 @@ const Signup = ({ localdata, submitdata }) => {
                   <div className="row justify-content-center">
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                        Sign up
+                      {isLoggedIn ? "Add User":"Sign up"}
                       </p>
 
                       <form className="mx-1 mx-md-4" onSubmit={Submitdata}>
@@ -162,7 +163,7 @@ const Signup = ({ localdata, submitdata }) => {
                             type="submit"
                             className="btn btn-primary btn-lg"
                           >
-                            Register
+                             {isLoggedIn ? "Add New User":"Register"}
                           </button>
                         </div>
                       </form>
