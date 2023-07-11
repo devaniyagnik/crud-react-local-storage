@@ -48,7 +48,7 @@ function App() {
     setLocaldata(updateddata);
     localStorage.setItem("data", JSON.stringify(updateddata));
   };
-  let  isLoggedIn = localStorage.getItem("userlogin");
+  let isLoggedIn = localStorage.getItem("userlogin");
 
   const getloginin = (e) =>{
     isLoggedIn = e;
