@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Header = ( {getloginin}) => {
   const navigator = useNavigate();
-  const isLoggedIn = localStorage.getItem('userlogin');
+  const isLoggedIn = localStorage.getItem('islogin');
   const isLoggedOut = () =>{
-    localStorage.removeItem('userlogin');
+    localStorage.removeItem('islogin');
     navigator("/login");
     console.log("hi");
     getloginin(isLoggedIn);
