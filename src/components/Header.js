@@ -2,14 +2,14 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 
-const Header = ( {getloginin}) => {
+const Header = ( {getloginin,isLoggedIn}) => {
   const navigator = useNavigate();
-  const isLoggedIn = localStorage.getItem('islogin');
+  // const isLoggedIn = localStorage.getItem('islogin');
   const isLoggedOut = () =>{
-    localStorage.removeItem('islogin');
+    localStorage.setItem('islogin',false);
     navigator("/login");
     console.log("hi");
-    getloginin(isLoggedIn);
+    getloginin();
   }
   const AddUser = () =>{
     navigator("singup")

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 function App() {
   // const navigator = new useNavigate();
   const [localdata, setLocaldata] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("islogin"));
 
 
   useEffect(() => {
@@ -48,15 +49,15 @@ function App() {
     setLocaldata(updateddata);
     localStorage.setItem("data", JSON.stringify(updateddata));
   };
-  let isLoggedIn = localStorage.getItem("userlogin");
+  
 
-  const getloginin = (e) =>{
-    isLoggedIn = e;
+  const getloginin = () =>{
+    setIsLoggedIn(!isLoggedIn)
   }
   return (
     <>
       <BrowserRouter>
-        <Header getloginin={getloginin}/>
+        <Header getloginin={getloginin} isLoggedIn={isLoggedIn}/>
         <Routes>
           <Route
             path="/"
@@ -64,16 +65,16 @@ function App() {
               isLoggedIn ? (
                 <Dashboard localdata={localdata} deletedata={deletedata} />
               ) : (
-                <Signup localdata={localdata} submitdata={submitdata} />
+                <Signup localdata={localdata} submitdata={submitdata} isLoggedIn={isLoggedIn}/>
               )
             }
           />
           <Route
             path="/singup"
-            element={<Signup localdata={localdata} submitdata={submitdata} />}
+            element={<Signup localdata={localdata} submitdata={submitdata} isLoggedIn={isLoggedIn}/>}
           />
 
-          <Route path="login" element={<Login localdata={localdata} />} />
+          <Route path="login" element={<Login localdata={localdata}  getloginin={getloginin} />} />
           <Route
             path="dashboard"
             element={

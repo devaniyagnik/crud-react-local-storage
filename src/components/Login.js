@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({localdata}) => {
+const Login = ({localdata,getloginin}) => {
   const [currentUserInput, setCurrentUserInput] = useState({
     email: "",
     password: "",
@@ -24,16 +24,17 @@ const Login = ({localdata}) => {
     //     user.email === currentUserInput.email && user.password === currentUserInput.password
     // );
   
-    const alldata = JSON.parse(localStorage.getItem("data")) ;
-
-    const userdata = alldata.filter(
+    // const alldata = JSON.parse(localStorage.getItem("data")) ;
+    
+    const userdata = localdata.filter(
       (user) =>
         user.email === currentUserInput.email && user.password === currentUserInput.password
-    );
+    ) ;
     if (userdata.length > 0) {
-      localStorage.setItem("userlogin",JSON.stringify(userdata))
+      localStorage.setItem("islogin",true)
       alert("Login successful");
       navigate('/dashboard');
+      getloginin();
 
     } else {
       alert("Invalid email or password");

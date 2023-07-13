@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Signup = ({ localdata, submitdata,isLoggedIn }) => {
@@ -33,7 +33,7 @@ const Signup = ({ localdata, submitdata,isLoggedIn }) => {
     reader.readAsDataURL(file);
   };
 
-  const getdatafromlocal = JSON.parse(localStorage.getItem("data")) || [];
+  
   const Submitdata = (e) => {
 
     e.preventDefault();
@@ -64,7 +64,7 @@ const Signup = ({ localdata, submitdata,isLoggedIn }) => {
         cpassword: "",
         file: "",
       });
-      {isLoggedIn.length > 0 ? navigate("/dashboard"):navigate("/login")}
+      {isLoggedIn ? navigate("/dashboard"):navigate("/login")}
       ;
     }
   };
